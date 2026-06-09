@@ -1,3 +1,13 @@
+# Docker Stack starten
+```
+docker compose up -d
+```
+
+# Docker Stack stoppen
+```
+docker compose down
+```
+
 # Workflow exportieren
 
 Neue oder geänderte Workflows aus dem laufenden Container exportieren:
@@ -11,7 +21,6 @@ docker cp "n8n:/home/node/.n8n/export/." ".\workflows\"
 
 # Workflow importieren
 
-# Alle Workflows importieren (z.B. nach einem Neuaufsetzen)
 ```powershell
 docker cp ".\workflows\." "n8n:/home/node/.n8n/import/"
 docker exec n8n n8n import:workflow '--separate' '--input=/home/node/.n8n/import/'
