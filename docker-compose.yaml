@@ -1,3 +1,6 @@
+include:
+  - webapp/docker-compose.yaml
+
 services:
   n8n:
     image: n8nio/n8n:latest

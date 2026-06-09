@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Neues Support-Ticket{% endblock %}
+
+{% block body %}
+<div class="card-header">
+    <h1>Support-Ticket erstellen</h1>
+    <p>Alle Felder sind Pflichtfelder.</p>
+</div>
+
+{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+<div class="form-group">
+    <label for="{{ form.username.vars.id }}">
+        {{ form_label(form.username) }}
+        <span class="required">*</span>
+    </label>
+    {{ form_widget(form.username, {
+        'attr': {
+            'class': form.username.vars.errors|length > 0 ? 'is-invalid' : ''
+        }
+    }) }}
+    {% if form.username.vars.errors|length > 0 %}
+    <ul class="form-errors">
+        {% for error in form.username.vars.errors %}
+        <li>{{ error.message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</div>
+
+<div class="form-group">
+    <label for="{{ form.beschreibung.vars.id }}">
+        {{ form_label(form.beschreibung) }}
+        <span class="required">*</span>
+    </label>
+    {{ form_widget(form.beschreibung, {
+        'attr': {
+            'class': form.beschreibung.vars.errors|length > 0 ? 'is-invalid' : ''
+        }
+    }) }}
+    {% if form.beschreibung.vars.errors|length > 0 %}
+    <ul class="form-errors">
+        {% for error in form.beschreibung.vars.errors %}
+        <li>{{ error.message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</div>
+
+<button type="submit" class="btn-submit">Ticket absenden</button>
+
+{{ form_end(form) }}
+{% endblock %}
