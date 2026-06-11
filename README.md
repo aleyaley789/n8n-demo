@@ -17,14 +17,7 @@ So bringst du den kompletten Demo-Stack zum Laufen und siehst eine Push-Benachri
 
 ### 1. Repository klonen
 
-**Linux / macOS (bash):**
 ```bash
-git clone https://github.com/aleyaley789/n8n-demo.git
-cd n8n-demo
-```
-
-**Windows (PowerShell):**
-```powershell
 git clone https://github.com/aleyaley789/n8n-demo.git
 cd n8n-demo
 ```
