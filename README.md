@@ -31,11 +31,29 @@ cd n8n-demo
 
 ### 2. Docker Stack starten
 
+**Linux (docker-compose):**
 ```bash
+docker-compose up -d
+```
+
+**Windows (docker compose):**
+```powershell
 docker compose up -d
 ```
 
-Beim ersten Start werden Images gebaut und die Webapp-Abhängigkeiten installiert - das kann ein paar Minuten dauern. Mit `docker compose ps` prüfen, ob alle Container (`n8n`, `gotify`, `webapp_php`, `webapp_nginx`, `webapp_mysql`) laufen bzw. healthy sind.
+Beim ersten Start werden Images gebaut und die Webapp-Abhängigkeiten installiert - das kann ein paar Minuten dauern. Mit `docker-compose ps` (Linux) bzw. `docker compose ps` (Windows) prüfen, ob alle Container (`n8n`, `gotify`, `webapp_php`, `webapp_nginx`, `webapp_mysql`) laufen bzw. healthy sind.
+
+Zum Stoppen des Stacks:
+
+**Linux (docker-compose):**
+```bash
+docker-compose down
+```
+
+**Windows (docker compose):**
+```powershell
+docker compose down
+```
 
 ### 3. Workflow "Support Ticket Demo" in n8n importieren
 
@@ -81,19 +99,6 @@ Zur Kontrolle kann zusätzlich in n8n unter **Executions** der Ablauf des Workfl
 
 ---
 
-# n8n Secrets
-Die n8n Secrets für AI API Keys müssen vor Ausführung des Workflows eingegeben werden, da die API Keys nicht mit exportiert werden
-
-# Docker Stack starten
-```
-docker compose up -d
-```
-
-# Docker Stack stoppen
-```
-docker compose down
-```
-
 # Erreichbarkeit
 
 | Dienst | URL |
@@ -137,3 +142,5 @@ docker exec n8n n8n import:workflow '--separate' '--input=/home/node/.n8n/import
 ```
 
 > **Hinweis:** Credentials (API-Keys etc.) sind nicht in den JSON-Dateien enthalten und müssen nach einem Import manuell in n8n neu verknüpft werden.
+
+> Die Dateien `ai-chat-agent-tutorial.json` und `nasa-api-tutorial.json` im `workflows`-Verzeichnis sind offizielle n8n-Tutorial-Workflows und nicht Teil der Support-Ticket-Demo.
