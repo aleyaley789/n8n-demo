@@ -1,0 +1,58 @@
+services:
+  php:
+    build:
+      context: .
+      dockerfile: php/Dockerfile
+    container_name: webapp_php
+    restart: unless-stopped
+    volumes:
+      - ./app:/var/www/html
+    networks:
+      - webapp_net
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      - APP_ENV=dev
+      - APP_SECRET=change-this-in-production-32chars
+      - DATABASE_URL=mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@mysql:3306/${MYSQL_DATABASE}?serverVersion=8.0&charset=utf8mb4
+      - TICKET_WEBHOOK_URL=${TICKET_WEBHOOK_URL}
+
+  mysql:
+    image: mysql:8.0
+    container_name: webapp_mysql
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    volumes:
+      - webapp_mysql_data:/var/lib/mysql
+    networks:
+      - webapp_net
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD}"]
+      interval: 5s
+      timeout: 10s
+      retries: 10
+
+  nginx:
+    image: nginx:alpine
+    container_name: webapp_nginx
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./app:/var/www/html:ro
+    networks:
+      - webapp_net
+    depends_on:
+      - php
+
+networks:
+  webapp_net:
+
+volumes:
+  webapp_mysql_data:

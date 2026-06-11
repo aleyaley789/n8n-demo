@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ticket erfolgreich erstellt{% endblock %}
+
+{% block body %}
+<div class="success-box">
+    <span class="success-icon">✅</span>
+    <h1>Ticket erstellt!</h1>
+    <p>Dein Support-Ticket wurde erfolgreich gespeichert.<br>Wir melden uns so schnell wie möglich bei dir.</p>
+    <a href="{{ path('ticket_new') }}" class="btn-new">Neues Ticket erstellen</a>
+</div>
+{% endblock %}

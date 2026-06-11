@@ -1,1 +1,10 @@
-.env
+webapp/app/vendor/
+webapp/app/var/
+webapp/app/.env.local
+webapp/app/.env.local.php
+webapp/app/.env.*.local
+webapp/app/config/secrets/prod/prod.decrypt.private.php
+webapp/app/public/bundles/
+webapp/app/config/reference.php
+gotify-data/
+.vscode/

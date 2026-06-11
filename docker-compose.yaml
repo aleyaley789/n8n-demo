@@ -1,3 +1,7 @@
+include:
+  - path: webapp/docker-compose.yaml
+    env_file: webapp/.env
+
 services:
   n8n:
     image: n8nio/n8n:latest
@@ -17,6 +21,34 @@ services:
       - DB_SQLITE_VACUUM_ON_STARTUP=true
     volumes:
       - n8n_data:/home/node/.n8n
+    networks:
+      - default
+      - webapp_net
+  gotify:
+    image: gotify/server
+    container_name: gotify
+    restart: unless-stopped
+    ports:
+      - "8088:80"
+    volumes:
+      - ./gotify-data:/app/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/health"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  gotify-init:
+    image: alpine:3.20
+    depends_on:
+      gotify:
+        condition: service_healthy
+    environment:
+      - GOTIFY_APP_TOKEN=${GOTIFY_APP_TOKEN}
+    volumes:
+      - ./gotify-data:/data
+      - ./gotify/init-app-token.sh:/init-app-token.sh:ro
+    entrypoint: ["sh", "/init-app-token.sh"]
 
 volumes:
   n8n_data:
