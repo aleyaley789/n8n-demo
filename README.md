@@ -1,3 +1,14 @@
+# Setup
+
+Vor dem ersten Start müssen die Umgebungsvariablen aus den `.env.dist`-Vorlagen angelegt werden:
+
+```
+cp .env.dist .env
+cp webapp/.env.dist webapp/.env
+```
+
+Die Default-Werte sind für den lokalen Betrieb ausreichend, können bei Bedarf aber angepasst werden.
+
 # Docker Stack starten
 ```
 docker compose up -d
@@ -7,6 +18,13 @@ docker compose up -d
 ```
 docker compose down
 ```
+
+# Erreichbarkeit
+
+| Dienst | URL |
+| --- | --- |
+| n8n | http://localhost:5678 |
+| Webapp (Support-Ticket-Formular) | http://localhost:8080 |
 
 # Workflow exportieren
 

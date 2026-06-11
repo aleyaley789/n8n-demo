@@ -1,5 +1,6 @@
 include:
-  - webapp/docker-compose.yaml
+  - path: webapp/docker-compose.yaml
+    env_file: webapp/.env
 
 services:
   n8n:
