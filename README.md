@@ -7,6 +7,10 @@ Dieser Demo-Stack zeigt, wie ein Support-Ticket-System mit einer KI-gestützten 
 3. Der Workflow lässt die Priorität des Tickets per AI klassifizieren.
 4. Je nach ermittelter Priorität verschickt der Workflow eine Push-Benachrichtigung über Gotify.
 
+| Niedrige Priorität | Kritische Priorität |
+| --- | --- |
+| ![Demo: niedrige Priorität](demo-gifs/demo_low_prioritylow.gif) | ![Demo: kritische Priorität](demo-gifs/demo_critical_priority.gif) |
+
 # Schnellstart zum Ausprobieren
 
 So bringst du den kompletten Demo-Stack zum Laufen und siehst eine Push-Benachrichtigung in Gotify, sobald ein Support-Ticket eingereicht wird.
